@@ -56,7 +56,9 @@ def index():
       if not re.search(r"""\(1146, "Table '.+' doesn't exist"\)$""",
                        e.message):
         raise
-
+  # flask.session['propagate_acl_result'] = bg_task.result
+  context['propagate_acl_result'] = session.get('propagate_acl_result', 'Not started')
+  context['propagate_acl_status'] = session.get('propagate_acl_status', 'Not started')
   return render_template("maintenance/trigger.html", **context)
 
 
