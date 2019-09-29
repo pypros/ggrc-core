@@ -913,8 +913,6 @@ def admin_propagate_acl():
       queued_callback=propagate_acl,
   )
   db.session.commit()
-  flask.session['propagate_acl_status'] = bg_task.status
-  flask.session['propagate_acl_result'] = bg_task.result
   return bg_task.make_response(
       app.make_response(("scheduled %s" % bg_task.name, 200,
                          [('Content-Type', 'text/html')])))
